@@ -21,17 +21,17 @@ router.post(`/api/login`,
 router.post('/api/register',
     [
         body("name")
-        .notEmpty()
-        .withMessage("Username can't be empty")
-        .isLength({ min: 5, max: 32 })
-        .withMessage("Username from 5 to 32 characters")
-        .isString(),
+          .notEmpty()
+          .withMessage("Username can't be empty")
+          .isLength({ min: 5, max: 32 })
+          .withMessage("Username from 5 to 32 characters")
+          .isString(),
         body("password")
-        .notEmpty()
-        .withMessage("Password can't be empty"),
+          .notEmpty()
+          .withMessage("Password can't be empty"),
         body("email")
-        .notEmpty()
-        .withMessage("Filled this filed")
+          .notEmpty()
+          .withMessage("Filled this filed")
     ],
     resgister
 )

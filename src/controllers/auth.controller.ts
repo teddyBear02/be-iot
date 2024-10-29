@@ -1,7 +1,7 @@
 import { Request, Response } from 'express'
 import { validationResult, matchedData } from 'express-validator'
-import { comparePassword, hashPassword } from '../helpers/authHelper'
-import { createToken } from '../helpers/jwtOAuthHelper'
+import { comparePassword, hashPassword } from '../helpers/auth.helper'
+import { createToken } from '../helpers/jwtOAuth.helper'
 import { User } from '../schemas'
 
 //_________________LOGIN____________________//
