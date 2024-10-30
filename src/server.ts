@@ -7,6 +7,7 @@ import routes from './routes'
 import cookieParser from 'cookie-parser'
 import { PORT } from './constants'
 import { Server } from 'socket.io'
+import connection from './mysql'
 
 // Coding here: 
 
@@ -32,10 +33,7 @@ app.use(cors({
 
 app.use(routes)
 
-
-mongoose.connect(`${process.env.DATA_BASE_ONLINE}`)
-    .then(() => console.log('Connected to DB !!!'))
-    .catch((err) => console.log(`Error: ${err}`))
+connection // Connect to database
 
 const key : string | undefined = process.env.SESSION_SECRET_KEY  
 
@@ -45,22 +43,21 @@ io.on('connection', (socket) => {
 
     socket.on('send_message', (message) => {
         console.log('Received message:', message);
-        // Gửi lại thông điệp cho tất cả client khác
         socket.broadcast.emit('new_message', message);
     });
 
-    // Cập nhật dữ liệu mỗi 5 giây
+
     const intervalId = setInterval(() => {
         const data = {
             timestamp: new Date(),
-            value: Math.random().toFixed(2) // Ví dụ: gửi một số ngẫu nhiên
+            value: Math.random().toFixed(2) 
         };
         socket.emit('updateData', data);
     }, 5000);
 
     socket.on('disconnect', () => {
         console.log('Client disconnected');
-        clearInterval(intervalId); // Dừng gửi khi client ngắt kết nối
+        clearInterval(intervalId); 
     });
 });
 
