@@ -4,7 +4,7 @@ import router from '../helpers/router.helper'
 
 // [POST] - Login
 
-router.post(`/api/login`,
+router.post(`/auth/login`,
     [
       body("email")
         .notEmpty()
@@ -18,7 +18,7 @@ router.post(`/api/login`,
 
 // [POST] - Register
 
-router.post('/api/register',
+router.post('/auth/register',
     [
         body("name")
           .notEmpty()

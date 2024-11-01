@@ -1,6 +1,5 @@
 // Import things here: 
 import express from 'express'
-import mongoose from 'mongoose'
 import http from 'http'
 import cors from 'cors'
 import routes from './routes'
@@ -8,6 +7,7 @@ import cookieParser from 'cookie-parser'
 import { PORT } from './constants'
 import { Server } from 'socket.io'
 import connection from './mysql'
+import mongoDb from './helpers/database.helper'
 
 // Coding here: 
 
@@ -33,7 +33,9 @@ app.use(cors({
 
 app.use(routes)
 
-connection // Connect to database
+//connection // Connect to database
+
+mongoDb
 
 const key : string | undefined = process.env.SESSION_SECRET_KEY  
 

@@ -55,10 +55,10 @@ export const login = async (req: Request, res: Response)   => {
     
     res.status(200).json(
         {
-            result: userFilter,
+            user: userFilter,
             message: "Login succeed !!!",
             status: 200,
-            token: token
+            accessToken: token
         }
     )
     
